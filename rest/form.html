@@ -1,0 +1,16 @@
+<form>
+    <button type="submit">Ajouter</button>
+</form>
+<script>
+    document.addEventListener('click', (e) => {
+        //console.log(e)
+        e.preventDefault()
+
+        fetch('/add-user', {
+            method: 'POST',
+            headers: {
+                'content-type' : 'application/json'
+            }
+        })
+    })
+</script>

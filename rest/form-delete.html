@@ -1,0 +1,16 @@
+<form>
+    <button type="submit">Effacer</button>
+</form>
+<script>
+    document.addEventListener('click', (e) => {
+        //console.log(e)
+        e.preventDefault()
+
+        fetch('/delete-user', {
+            method: 'DELETE',
+            headers: {
+                'content-type' : 'application/json'
+            }
+        })
+    })
+</script>
