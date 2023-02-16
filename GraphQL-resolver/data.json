@@ -1,0 +1,31 @@
+[
+    {
+        "id": 1,
+        "name": "Paul",
+        "age": 24,
+        "posts": [
+            {
+                "title": "Title 1 "
+            },
+            {
+                "title": "Title 2"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Lisa",
+        "age": 32,
+        "posts": [
+            {
+                "title": "Title 3 "
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Paul",
+        "age": 28,
+        "posts": []
+    }
+]
