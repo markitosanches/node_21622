@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import Header from './components/Header'
-import Tasks from './components/Tasks'
+import ManyTasks from './components/ManyTasks'
+import AddTask from './components/AddTask'
 
 
 function App() {
 //Global
 
-const [tasks, setTask] = useState ([
+const [tasks, setTasks] = useState ([
   {
       id:1,
       text: 'Doctos appointment',
@@ -26,11 +27,42 @@ const [tasks, setTask] = useState ([
       reminder: false,
   }
 ])
+//Delete
+const deleteTask = (id) => {
+  //console.log(id)
+  setTasks(tasks.filter((task) => task.id !== id))
+}
+
+//ToggleReminder
+const toggleReminder = (id) => {
+ // console.log(id)
+  setTasks(tasks.map((task) => task.id === id ? { ...task, reminder:!task.reminder} : task))
+}
+
+//Add
+const addTask = (task) => {
+  //console.log(task)
+  const id = Math.floor(Math.random() * 1000)
+  const newTask = {id, ...task}
+  //console.log(newTask)
+  setTasks([...tasks, newTask])
+}
+
+//toggle Form
+
+const [showAddTask, setShowAddTask] = useState(false)
 
   return (
     <div className='container'>
-      <Header/>
-      <Tasks tasks={tasks}/>
+      <Header onAdd={() => setShowAddTask(!showAddTask)} showAdd={showAddTask}/>
+      
+      { showAddTask && <AddTask onAdd={addTask}/> }
+      {tasks.length > 0 ? (
+        <ManyTasks tasks={tasks} onDeleteMany={deleteTask} onToggleMany={toggleReminder}/>
+        ):(
+          'No tasks'
+        )}
+
     </div>
   );
 }
