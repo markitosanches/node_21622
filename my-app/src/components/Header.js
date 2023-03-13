@@ -17,8 +17,6 @@ const Header = (props) => {
             color={props.showAdd ? 'red' : 'green'}
             onClick={props.onAdd}/>
             )}
-
-
         </header>
     )
 }
