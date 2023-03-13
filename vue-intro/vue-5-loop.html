@@ -23,27 +23,38 @@
             template: `
             <h1>{{ title }}</h1>
             <form @submit.prevent="handleSubmit">
-                    <custom-input v-bind:label="labelUsername" :type="typeEmail" :placeholder="placeUsername" v-model="username"/>
-                    <custom-input :label="labelPassword"  :type="typePassword" :placeholder="placePassword" v-model="password"/>
+                    <custom-input 
+                    v-for="input in inputs"
+                    v-bind:label="input.label" 
+                    :type="input.type" 
+                    :placeholder="input.placeholder" 
+                    v-model="input.value"/>
+                    
                     <input type="submit" value="login">
             </form>
             `,
             data() {
                 return {
                     title: 'Login page',
-                    labelUsername: 'Username',
-                    typeEmail: 'email',
-                    placeUsername: 'Enter the email',
-                    username: '',
-                    labelPassword: 'Password',
-                    typePassword: 'password',
-                    placePassword: 'Enter the password',
-                    password: ''
+                    inputs:[
+                        {
+                            label: 'Username',
+                            type: 'email',
+                            placeholder: 'Enter an email',
+                            value:''
+                        },
+                        {
+                            label: 'Password',
+                            type: 'password',
+                            placeholder: 'Enter a password',
+                            value:''
+                        }
+                    ]
                 }
             },
             methods: {
                 handleSubmit(){
-                    console.log(this.username, this.password)
+                    console.log(this.inputs[0].value, this.inputs[1].value)
                 }
             }
         })
