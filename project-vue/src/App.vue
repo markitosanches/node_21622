@@ -33,10 +33,14 @@
             </div>
         </header>
         <Router-view
-        :inventory = "inventory"/>
+        :inventory = "inventory"
+        :addTo = "addToCart"
+        />
         <Sidebar
         v-if="showSideBar"
         :toggle = "toggleSideBar"
+        :cart = "cart"
+        :inventory = "inventory"
         />
 </template>
 
@@ -51,12 +55,18 @@ export default {
   data: () => {
     return {
       showSideBar: false,
-      inventory: inventory
+      inventory: inventory,
+      cart: {}
     }
   },
   methods: {
     toggleSideBar () {
       this.showSideBar = !this.showSideBar
+    },
+    addToCart (product, index) {
+      if (!this.cart[product]) this.cart[product] = 0
+      this.cart[product] += inventory[index].quantity
+      this.inventory[index].quantity = 0
     }
   }
 }

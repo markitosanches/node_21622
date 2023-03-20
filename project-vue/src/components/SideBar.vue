@@ -21,24 +21,12 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td><img src="img/100/phone.jpg" alt="..." /></td>
-                  <td>Phone</td>
-                  <td>$1.00</td>
-                  <td class="center">1</td>
-                  <td>$1.00</td>
-                  <td class="center">
-                    <button class="btn btn-light cart-remove">
-                      &times;
-                    </button>
-                  </td>
-                </tr>
-                <tr>
+                <tr v-for="(quantity, key, i) in cart" :key="i">
                     <td><img src="img/100/game.jpg" alt="..." /></td>
-                    <td>Game</td>
-                    <td>$1.00</td>
-                    <td class="center">1</td>
-                    <td>$1.00</td>
+                    <td>{{ key }}</td>
+                    <td>${{getPrice(key)}}</td>
+                    <td class="center">{{ quantity }}</td>
+                    <td>${{(getPrice(key)*quantity).toFixed(2)}}</td>
                     <td class="center">
                       <button class="btn btn-light cart-remove">
                         &times;
@@ -59,6 +47,15 @@
 
 <script>
 export default {
-  props: ['toggle']
+  props: ['toggle', 'cart', 'inventory'],
+  methods: {
+    getPrice (name) {
+      const product = this.inventory.find((p) => {
+        return p.name === name
+      })
+      return product.price.CAD.toFixed(2)
+    }
+  }
 }
+
 </script>
