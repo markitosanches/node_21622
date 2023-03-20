@@ -12,7 +12,9 @@
                         <li class="nav-item">
                           <router-link class="nav-link" to="/about">About</router-link>
                         </li>
-                        New product
+                        <li class="nav-item">
+                          <router-link class="nav-link" to="/new-product">New Product</router-link>
+                        </li>
                     </ul>
                     <form class="d-flex">
                         <button class="btn btn-outline-dark" type="button" @click="toggleSideBar">

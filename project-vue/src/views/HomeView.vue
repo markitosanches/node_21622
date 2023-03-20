@@ -22,7 +22,7 @@
                                     <input class="form-control qt" type="number" v-model.number="product.quantity"/>
                                     <a class="btn btn-outline-dark mt-auto" @click="addTo(product.name, i)">Add to the cart</a>
                                     <p>
-                                        <a href="">See more...</a>
+                                        <router-link to="product">See more...</router-link>
                                     </p>
                                 </div>
                             </div>
