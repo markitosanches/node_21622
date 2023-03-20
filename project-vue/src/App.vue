@@ -12,12 +12,13 @@
                         <li class="nav-item">
                           <router-link class="nav-link" to="/about">About</router-link>
                         </li>
+                        New product
                     </ul>
                     <form class="d-flex">
                         <button class="btn btn-outline-dark" type="button" @click="toggleSideBar">
                             <i class="bi-cart-fill me-1"></i>
                             Cart
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                            <span class="badge bg-dark text-white ms-1 rounded-pill"> {{ totalQuantity }}</span>
                         </button>
                     </form>
                 </div>
@@ -41,6 +42,7 @@
         :toggle = "toggleSideBar"
         :cart = "cart"
         :inventory = "inventory"
+        :remove = "removeItem"
         />
 </template>
 
@@ -67,6 +69,16 @@ export default {
       if (!this.cart[product]) this.cart[product] = 0
       this.cart[product] += inventory[index].quantity
       this.inventory[index].quantity = 0
+    },
+    removeItem (name) {
+      delete this.cart[name]
+    }
+  },
+  computed: {
+    totalQuantity () {
+      return Object.values(this.cart).reduce((acc, curr) => {
+        return acc + curr
+      }, 0)
     }
   }
 }
