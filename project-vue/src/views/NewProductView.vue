@@ -15,7 +15,7 @@
               <h4 class="mb-3">Add new product</h4>
               <div class="needs-validation" novalidate>
                 <div class="row g-2">
-                  <div>
+                  <div v-if="!submitted">
                   <div class="col-12">
                     <label for="productName" class="form-label"
                       >Product Name</label
@@ -55,7 +55,7 @@
                         class="form-control"
                         id="productPrice"
                         placeholder=""
-                        v-model="product.price"
+                        v-model.number="product.price.CAD"
                         required
                       />
                       <div class="invalid-feedback">Price is required.</div>
@@ -94,14 +94,14 @@
                       Valid photo path is required.
                     </div>
                   </div>
-                  <button class="w-100 btn btn-secondary btn-lg mt-3" type="button" >Save </button>
+                  <button class="w-100 btn btn-secondary btn-lg mt-3" type="button" @click="saveProduct">Save </button>
                   </div>
-                  <div>
+                  <div v-else>
                     <div  class="alert alert-success alert-dismissible fade show" role="alert">
                     <strong> You submitted successfully!</strong>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
-                    <button class="w-100 btn btn-success btn-lg mt-3" type="button">New product </button>
+                    <button class="w-100 btn btn-success btn-lg mt-3" type="button" @click="newProduct">New product </button>
                   </div>
                   <hr class="my-4">
                 </div>
@@ -115,16 +115,31 @@
 
 <script>
 export default {
+  props: ['addInv'],
   data () {
     return {
       submitted: false,
       product: {
         name: '',
         photo: '',
-        price: '',
+        price: {
+          CAD: ''
+        },
         description: '',
         type: ''
       }
+    }
+  },
+  methods: {
+    saveProduct () {
+      this.addInv(this.product)
+      this.submitted = true
+      this.$router.push({ name: 'home' })
+      // console.log(this.submitted)
+    },
+    newProduct () {
+      this.submitted = false
+      this.product = {}
     }
   }
 }

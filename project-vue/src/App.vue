@@ -10,7 +10,7 @@
                           <router-link class="nav-link active" aria-current="page" to="/">Home</router-link>
                         </li>
                         <li class="nav-item">
-                          <router-link class="nav-link" to="/about">About</router-link>
+                          <router-link class="nav-link" :to="{name: 'about'}">About</router-link>
                         </li>
                         <li class="nav-item">
                           <router-link class="nav-link" to="/new-product">New Product</router-link>
@@ -38,6 +38,7 @@
         <Router-view
         :inventory = "inventory"
         :addTo = "addToCart"
+        :addInv = "addInventory"
         />
         <Sidebar
         v-if="showSideBar"
@@ -74,6 +75,9 @@ export default {
     },
     removeItem (name) {
       delete this.cart[name]
+    },
+    addInventory (product) {
+      this.inventory.push(product)
     }
   },
   computed: {

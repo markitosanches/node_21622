@@ -25,7 +25,8 @@
                                         <!--<router-link to="product">See more...</router-link>-->
                                         <!--<router-link :to="product.name">See more...</router-link>-->
                                         <!--<router-link :to="'product/'+product.name">See more...</router-link>-->
-                                        <router-link :to="`product/${product.name}`">See more...</router-link>
+                                        <!--<router-link :to="`product/${product.name}`">See more...</router-link>-->
+                                        <router-link :to="{name: 'product', params: {id: product.name}}">See more...</router-link>
                                     </p>
                                 </div>
                             </div>
