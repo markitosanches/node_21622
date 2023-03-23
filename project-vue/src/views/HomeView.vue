@@ -6,7 +6,7 @@
                     <div class="col mb-5" v-for="(product, i) in inventory" :key="i">
                         <div class="card h-100">
                             <!-- Product image-->
-                            <img class="card-img-top" :src="'img/450/'+product.photo" alt="..." />
+                            <img class="card-img-top" :src="require(`@/assets/img/450/${product.photo}`)" :alt="product.name" />
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
@@ -22,7 +22,10 @@
                                     <input class="form-control qt" type="number" v-model.number="product.quantity"/>
                                     <a class="btn btn-outline-dark mt-auto" @click="addTo(product.name, i)">Add to the cart</a>
                                     <p>
-                                        <router-link to="product">See more...</router-link>
+                                        <!--<router-link to="product">See more...</router-link>-->
+                                        <!--<router-link :to="product.name">See more...</router-link>-->
+                                        <!--<router-link :to="'product/'+product.name">See more...</router-link>-->
+                                        <router-link :to="`product/${product.name}`">See more...</router-link>
                                     </p>
                                 </div>
                             </div>

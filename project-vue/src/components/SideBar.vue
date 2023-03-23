@@ -22,7 +22,8 @@
               </thead>
               <tbody>
                 <tr v-for="(quantity, key, i) in cart" :key="i">
-                    <td><img :src="'img/100/'+getPhoto(key)" :alt="key" /></td>
+                    <!--<td><img :src="'img/100/'+getPhoto(key)" :alt="key" /></td>-->
+                    <td><img :src="require(`@/assets/img/100/${getPhoto(key)}`)" :alt="key" /></td>
                     <td>{{ key }}</td>
                     <td>${{getPrice(key)}}</td>
                     <td class="center">{{ quantity }}</td>

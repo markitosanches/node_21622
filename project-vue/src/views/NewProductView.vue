@@ -25,6 +25,7 @@
                       class="form-control"
                       id="productName"
                       placeholder=""
+                      v-model = "product.name"
                       required
                     />
                     <div class="invalid-feedback">Valid name is required.</div>
@@ -38,6 +39,7 @@
                       class="form-control"
                       id="productPhoto"
                       placeholder=""
+                      v-model="product.photo"
                       required
                     />
                     <div class="invalid-feedback">
@@ -53,6 +55,7 @@
                         class="form-control"
                         id="productPrice"
                         placeholder=""
+                        v-model="product.price"
                         required
                       />
                       <div class="invalid-feedback">Price is required.</div>
@@ -66,6 +69,7 @@
                       class="form-control"
                       id="productDescription"
                       placeholder=""
+                      v-model="product.description"
                     ></textarea>
                     <div class="invalid-feedback">Valid description</div>
                   </div>
@@ -77,6 +81,7 @@
                       class="form-control"
                       id="productType"
                       placeholder=""
+                      v-model="product.type"
                       required
                     >
                       <option value="">Select</option>
@@ -107,3 +112,20 @@
       </section>
     </div>
   </template>
+
+<script>
+export default {
+  data () {
+    return {
+      submitted: false,
+      product: {
+        name: '',
+        photo: '',
+        price: '',
+        description: '',
+        type: ''
+      }
+    }
+  }
+}
+</script>
