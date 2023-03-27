@@ -55,7 +55,7 @@
                         class="form-control"
                         id="productPrice"
                         placeholder=""
-                        v-model.number="product.price.CAD"
+                        v-model.number="product.price"
                         required
                       />
                       <div class="invalid-feedback">Price is required.</div>
@@ -122,9 +122,7 @@ export default {
       product: {
         name: '',
         photo: '',
-        price: {
-          CAD: ''
-        },
+        price: '',
         description: '',
         type: ''
       }

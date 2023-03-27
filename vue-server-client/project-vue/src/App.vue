@@ -51,7 +51,8 @@
 
 <script>
 import Sidebar from '@/components/SideBar.vue'
-import inventory from '@/product.json'
+// import inventory from '@/product.json'
+import ProductDataService from '@/services/ProductDataService'
 
 export default {
   components: {
@@ -60,7 +61,7 @@ export default {
   data: () => {
     return {
       showSideBar: false,
-      inventory: inventory,
+      inventory: [],
       cart: {}
     }
   },
@@ -70,7 +71,7 @@ export default {
     },
     addToCart (product, index) {
       if (!this.cart[product]) this.cart[product] = 0
-      this.cart[product] += inventory[index].quantity
+      this.cart[product] += this.inventory[index].quantity
       this.inventory[index].quantity = 0
     },
     removeItem (name) {
@@ -86,6 +87,13 @@ export default {
         return acc + curr
       }, 0)
     }
+  },
+  mounted () {
+    ProductDataService.getAll()
+      .then(response => {
+        this.inventory = response.data
+        console.log(response.data)
+      })
   }
 }
 </script>
