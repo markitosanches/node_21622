@@ -13,6 +13,7 @@
           >
             <div class="col-sm-12">
               <h4 class="mb-3">Add new product</h4>
+              <div class="alert alert-danger" v-show="message">{{ message }}</div>
               <div class="needs-validation" novalidate>
                 <div class="row g-2">
                   <div v-if="!submitted">
@@ -114,10 +115,12 @@
   </template>
 
 <script>
+import ProductDataService from '@/services/ProductDataService'
 export default {
   props: ['addInv'],
   data () {
     return {
+      message: null,
       submitted: false,
       product: {
         name: '',
@@ -130,10 +133,20 @@ export default {
   },
   methods: {
     saveProduct () {
-      this.addInv(this.product)
-      this.submitted = true
-      this.$router.push({ name: 'home' })
-      // console.log(this.submitted)
+      ProductDataService.create(this.product)
+        .then(response => {
+          // console.log(response.data)
+          this.product.id = response.data.id
+          this.addInv(this.product)
+          this.message = null
+          this.submitted = true
+          // this.$router.push({ name: 'home' })
+          // console.log(this.submitted)
+        })
+        .catch(e => {
+          console.log(e.response.data.message)
+          this.message = e.response.data.message
+        })
     },
     newProduct () {
       this.submitted = false

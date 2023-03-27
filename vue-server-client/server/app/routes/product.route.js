@@ -4,7 +4,7 @@ module.exports = app => {
 
     router.get('/', product.myFindAll)
 
-    ///router.post('/', product.myCreatel)
+    router.post('/', product.myCreate)
 
     app.use('/api/product', router)
 }
