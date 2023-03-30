@@ -6,5 +6,11 @@ module.exports = app => {
 
     router.post('/', product.myCreate)
 
+    router.get('/:id', product.myFindOne)
+
+    router.delete('/:id', product.myDestroy)
+
+    router.put('/:id', product.myUpdate)
+
     app.use('/api/product', router)
 }

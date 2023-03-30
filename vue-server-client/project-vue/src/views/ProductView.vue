@@ -19,6 +19,9 @@
                               Add to cart
                           </button>
                       </div>
+                      <hr>
+                       <!--<router-link class="btn btn-success"  :to="'/edit-product/'+product.id">Edit</router-link>-->
+                       <router-link class="btn btn-success"  :to="{name: 'edit-product', params: {id: product.id} }">Edit</router-link>
                   </div>
               </div>
           </div>
